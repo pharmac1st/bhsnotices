@@ -1,0 +1,62 @@
+<content:page>
+
+<script src="../_static/change.js"></script>
+<script src="../_static/year.js"></script>
+<h1 style="padding-left: 0.5rem; padding-bottom:3rem;"> Add Notice: (Click on text elements to change them.) </h1>
+
+<div class="datefor">
+	<h3> Date for: </h3>
+	<select class="inp" name="date">
+		<?r
+			month = Month.new
+			month.show(false).each do |day| ?>
+				<option value="#{day[0]}"> #{day[0]} </option>
+	<?r end ?>
+	</select>
+</div>
+
+<div class="noticewhole">
+<form id="editf" action="edit" method="post">
+<div class="notice_title">
+	<?r if request.session[:nyears] == nil or request.session[:nyears] == "" ?>
+		<h4 class="years" onclick="show_yrs()" style="padding-left: 0.5rem;"> Click to edit (NOTICE YEAR GROUP). </h4>
+	<?r else ?>
+			<h4 class="years" onclick="show_yrs()" style="padding-left: 0.5rem;"> #{request.session[:nyears]} </h4>
+	<?r end ?>
+	<div style="display: flex;">
+		<?r if request.session[:nname] == nil or request.session[:nname] == "" ?>
+			<h4 class="name" onclick="edit_name(this)" style="padding-right: 0.5rem; padding-left: 0.5rem;"> Click to edit (NOTICE NAME). </h4>
+		<?r else ?>
+			<h4 class="name" onclick="edit_name(this)" style="padding-right: 0.5rem; padding-left: 0.5rem;"> #{request.session[:nname]} </h4>
+		<?r end ?>
+		<h4 onclick="submit_name()" id="submitname" style="display: none; padding-left: 30px;color: green;"> Submit </h4>
+	</div>
+	<h4 class="teachercode" style="padding-right: 0.5rem;"> [ADMIN] </h4>
+</div>
+<?r if request.session[:ncontent] == nil or request.session[:ncontent] == "" ?>
+	<p onclick="edit_content(this)" name="content" class="contentc" style="padding-left: 0.5rem;"> Click to edit (CONTENT).</p>
+<?r else ?>
+	<p onclick="edit_content(this)" name="content" class="contentc" style="padding-left: 0.5rem;"> #{request.session[:ncontent]} </p>
+<?r end ?>
+<h4 style="display:none;text-align: center; color: green;" id="submitcontent" onclick="submit_name()"> Submit </h4>
+</form>
+<form action="edityrs" method="post">
+<div class="agebox" id="yrs">
+<span class="ageboxbrd">
+	<?r (9..13).each do |age| ?>
+		<input type="checkbox" name="year#{age}" id="y#{age}" onclick="uncheckind(this)"> Year #{age} </input>
+	<?r end ?>
+		<input type="checkbox" name="allyears" id="allyear" onclick="allyearscheck(this)"> All Years </input>
+		<script ssrc="../_static/year.js"></script>
+		<input type="submit" style="vertical-align: middle;"/>
+</span>
+</div>
+</form>
+<form action="finalsubmit" method="post">
+</form>
+</div>
+
+<h2 class="submitbox"> <span class="submitboxbrd"> Submit notice </span> </h2>
+
+
+</content:page>

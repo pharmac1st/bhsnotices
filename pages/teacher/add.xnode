@@ -1,0 +1,47 @@
+<content:page>
+<head>
+	<?r require_relative "../../lib/notice"
+	?>
+</head>
+
+<body>
+
+	<h1> Add New Notice: </h1>
+	<div class="cent">
+
+		<form action="newnotice" method="post">
+
+			<h2 style="font-size: 37.5px;"> Notice Name </h2>
+			<input class="inp" name="nname"/>
+			<h2 style="font-size: 37.5px;"> Notice Contents </h2>
+			<textarea style="font-size: 30px;" rows="4" cols="50" name="content"></textarea>
+			<div class="container">
+				<div>
+					<h2> Year Groups </h2>
+					<?r (9..13).each do |age| ?>
+						<input type="checkbox" name="year#{age}" id="y#{age}" onclick="uncheckind(this)"> Year #{age} </input>
+					<?r end ?>
+						<input type="checkbox" name="allyears" id="allyear" onclick="allyearscheck(this)" checked> All Years </input>
+						<script src="../_static/year.js"></script>
+				</div>
+				<div>
+					<h2> Date for </h2>
+					<select class="inp" name="date">
+						<?r
+							month = Month.new
+							month.show(false).each do |day| ?>
+								<option value="#{day[0]}"> #{day[0]} </option>
+					<?r end ?>
+					</select>
+				</div>
+			</div>
+			<input type="submit" class="bigbutton" style="margin-top: 65px;"/>
+
+
+		</form>
+
+	</div>
+
+</body>
+
+</content:page>

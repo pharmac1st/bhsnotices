@@ -1,0 +1,55 @@
+<content:page>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="../_static/site.css"/>
+	<?r
+	require_relative "../lib/notice.rb"
+	notices = NoticeController.new(Time.new, File.expand_path("../db", __dir__))
+	content = notices.retrieve_notices
+	date = notices.date
+	display_none = false
+	if content == []
+		display_none = true
+	end
+	?>
+	<?r if request.session[:failed] == true ?>
+		<script> alert("Login Failed. #{request.session[:failed]} #{request.session[:debug]}") </script>
+		<?r request.session[:failed] = false ?>
+	<?r end ?>
+</head>
+
+<header class="mocha">
+<div class="container">
+<h1 class="title"> CBHS<br/>Notices</h1>
+</div>
+</header>
+
+<?r
+require_relative "../lib/date"
+?>
+<p class="date"> #{date_conv(date)} </p>
+
+<div class="cent">
+	<?r if display_none == false ?>
+		<?r nn = false ?>
+	<?r
+	else
+		nn = true
+	?>
+	<?r end ?>
+	<nav>
+	<div class="center">
+		<a style="padding-right: 1rem;" href="http://intranet.cbhs.school.nz/start/"> CBHS Intranet </a>
+		<a style="padding-left: 1rem;" href="login"> Teacher Login </a>
+	</div>
+	</nav>
+	<?r if nn == true ?>
+	<h3 class="nonotice"> No notices to display for #{date_conv(date)}. </h3>
+	<?r end ?>
+</div>
+
+
+
+
+
+</content:page>
