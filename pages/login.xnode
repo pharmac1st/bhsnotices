@@ -1,14 +1,21 @@
 <content:page>
-<div class="cent">
+
+<body class="loginbkg">
+
+<div style="padding-top: 19rem;">
+	<span class="logintransbkg">
 	<h1> Login: </h1>
 	<form action="userlogin" method="post">
 		<h3> Username </h3>
 		<input class="inp" name="usr"/>
 		<h3> Password </h3>
 		<input class="inp" type="password" name="pws"/>
-		<h4 style="color: white;"> . </h4>
+		<h4 style="visibility: hidden"> . </h4>
 		<input type="submit"/>
 	</form>
+	</span>
 </div>
+
+</body>
 
 </content:page>

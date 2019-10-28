@@ -16,6 +16,23 @@ MONTH_CONV = {
 
 }
 
+UMONTH_CONV = {
+
+	1 => "january",
+	2 => "february",
+	3 => "march",
+	4 => "april",
+	5 => "may",
+	6 => "june",
+	7 => "july",
+	8 => "august",
+	9 => "september",
+	10 => "october",
+	11 => "november",
+	12 => "december",
+
+}
+
 DAY_CONV = {
 
 	0 => "Sunday",
@@ -40,6 +57,18 @@ SLANG_CONV = {
 
 }
 
+DMIT_CONV = {
+
+	"sunday" => "sun",
+	"monday" => "mon",
+	"tuesday" => "tue",
+	"wednesday" => "wed",
+	"thursday" => "thu",
+	"friday" => "fri",
+	"saturday" => "sat"
+
+}
+
 def date_today
 	today = Time.new
 
@@ -53,5 +82,19 @@ def date_conv(time)
 
 	hash = {:nd => DAY_CONV[time.wday], :d => time.day, :m => MONTH_CONV[time.month], :y => time.year}
 	return "#{hash[:nd]}, #{hash[:d]} #{hash[:m]}"
+
+end
+
+x = "Tuesday, 29 October"
+
+def date_conv_reverse(string)
+
+	date = {:day => "", :daynum => "", :month => ""}
+	all = string.split(",").map {|x| x.strip}
+	date[:day] = DMIT_CONV[all[0].downcase]
+	date[:daynum] = all[1].split(" ")[0]
+	date[:month] = all[1].split(" ")[1].downcase
+
+	return date
 
 end

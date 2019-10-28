@@ -70,11 +70,12 @@
 
 }
 
-body {
+body, html {
 
 	margin: 0px;
-
+  height: 100%;
 }
+
 
 .date {
 
@@ -104,6 +105,8 @@ body {
 
 	text-align: center;
 	display: none;
+	padding-top: 2.5rem;
+	padding-bottom: 2.5rem;
 
 }
 
@@ -111,7 +114,6 @@ body {
 
 	text-align: center;
 	margin-top: 3rem;
-
 
 }
 
@@ -150,6 +152,51 @@ body {
 	text-align: center;
 	padding-bottom: 2rem;
 
+}
 
+.transbkg {
+
+	background-color: rgba(255, 255, 255, 0.8);
+	padding-bottom: 0.5rem;
+	padding-top: 0.5rem;
+
+}
+
+.reviewbkg {
+
+	background-image: url('../_static/images/cbhs_hero2.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: #014085;
+	background-position: center;
+	height: 100%;
+
+}
+
+.loginbkg {
+
+	background-image: url('../_static/images/login.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: #014085;
+	background-position: center;
+	height: 100%;
+
+}
+
+.logintransbkg {
+
+	border-style: solid;
+	padding-left: 0rem;
+	display: block;
+	background-color: rgba(255, 255, 255, 0.8);
+	text-align: center;
+
+}
+
+.info {
+
+	text-align: center;
+	border-bottom: solid;
 
 }

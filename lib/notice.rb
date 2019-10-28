@@ -1,5 +1,5 @@
 require_relative "date"
-require "FileUtils"
+require 'fileutils'
 require "json"
 
 
@@ -120,10 +120,11 @@ class NoticeController
 
 	def add_notice(date_for, name, content, tsub)
 
+		date_for = date_conv_reverse(date_for)
 		entry = Entry.new(name, content, tsub)
 		entry = entry.view.to_json
-		entry_date = "#{date_for.day}_#{SLANG_CONV[date_for.wday]}"
-		File.open("#{@database}/#{date_for.year}/#{MONTH_CONV[date_for.month]}/#{entry_date}.json", "a") {|file|
+		entry_date = "#{date_for[:daynum]}_#{date_for[:day]}"
+		File.open("#{@database}/#{@year}/#{date_for[:month]}/#{entry_date}.json", "a") {|file|
 			file.puts entry
 		}
 
@@ -131,7 +132,7 @@ class NoticeController
 
 	def retrieve_notices
 		entry_date = "#{@date.day}_#{SLANG_CONV[@date.wday]}"
-		notices = File.readlines("#{@database}/#{@date.year}/#{MONTH_CONV[@date.month]}/#{entry_date}.json").map {|x| JSON.parse(x)}
+		notices = File.readlines("#{@database}/#{@date.year}/#{UMONTH_CONV[@date.month]}/#{entry_date}.json").map {|x| JSON.parse(x)}
 		return notices
 
 	end

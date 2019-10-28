@@ -8,6 +8,10 @@ on "userlogin" do |request|
 
 	if login.check(request.params["usr"], request.params["pws"]) == true
 		request.session[:loggedin] = true
+		request.session[:notfilledal] = nil
+		request.session[:nyears] = nil
+		request.session[:ncontent] = nil
+		request.session[:nname] = nil
 		redirect! "teacher/review"
 	else
 		request.session[:failed] = true
@@ -74,4 +78,25 @@ on "teacher/edityrs" do |request|
 	end
 	redirect! "review"
 
+end
+
+
+
+
+
+
+on "teacher/finalsubmit" do |request|
+
+	if request.session[:ncontent] == nil or request.session[:ncontent] == ""
+		request.session[:notfilledal] = true
+		redirect! "review"
+	end
+	if request.session[:nname] == nil or request.session[:nname] == ""
+		request.session[:notfilledal] = true
+		redirect! "review"
+	end
+	nc = NoticeController.new(Time.now, "db")
+	nc.add_notice(request.params["date"], request.session[:nname], request.session[:ncontent], "[ADMIN]")
+	request.session[:addedalert] = true
+	redirect! "../index"
 end

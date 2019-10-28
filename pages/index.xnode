@@ -16,7 +16,12 @@
 		<script> alert("Login Failed. #{request.session[:failed]} #{request.session[:debug]}") </script>
 		<?r request.session[:failed] = false ?>
 	<?r end ?>
+	<?r if request.session[:addedalert] == true ?>
+		<script> alert("Notice added with title #{request.session[:nname]} successfully added.") </script>
+		<?r request.session[:addedalert] = false ?>
+	<?r end ?>
 </head>
+
 
 <header class="mocha">
 <div class="container">
@@ -29,7 +34,7 @@ require_relative "../lib/date"
 ?>
 <p class="date"> #{date_conv(date)} </p>
 
-<div class="cent">
+<div class="info">
 	<?r if display_none == false ?>
 		<?r nn = false ?>
 	<?r
@@ -38,7 +43,7 @@ require_relative "../lib/date"
 	?>
 	<?r end ?>
 	<nav>
-	<div class="center">
+	<div class="cent">
 		<a style="padding-right: 1rem;" href="http://intranet.cbhs.school.nz/start/"> CBHS Intranet </a>
 		<a style="padding-left: 1rem;" href="login"> Teacher Login </a>
 	</div>
@@ -47,6 +52,7 @@ require_relative "../lib/date"
 	<h3 class="nonotice"> No notices to display for #{date_conv(date)}. </h3>
 	<?r end ?>
 </div>
+<?r p content ?>
 
 
 

@@ -31,5 +31,12 @@ function submit_name() {
 function show_yrs() {
 
 	document.getElementById('yrs').style.display = "block"
+	document.getElementById('subbutton').style.display = "none"
+
+}
+
+function submit_fns() {
+
+	document.getElementById('fns').submit();
 
 }
