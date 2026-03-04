@@ -1,3 +1,5 @@
+This was a high school project for my computer science class.
+
 # New Utopia Site
 
 Welcome to Utopia, a Ruby framework for web site and application development. For documentation, please visit https://github.com/ioquatix/utopia.
